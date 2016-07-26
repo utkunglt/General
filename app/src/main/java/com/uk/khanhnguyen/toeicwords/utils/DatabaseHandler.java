@@ -34,7 +34,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     BOOKS_COLUMN_TITLE + " TEXT," +
                     BOOKS_COLUMN_DESCRIPTION + " TEXT," +
                     BOOKS_COLUMN_AUTHOR + " TEXT," +
-                    BOOKS_COLUMN_IMAGEURL + " TEXT," + ")";
+                    BOOKS_COLUMN_IMAGEURL + " TEXT" + ")";
 
     private static final String SQL_DELETE_BOOK_TABLE =
             "DROP TABLE IF EXISTS " + BOOKS_TABLE_NAME;
@@ -78,7 +78,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      *
      * @param bookModel the book model
      */
-    private boolean addBook(BookModel bookModel) {
+    public boolean addBook(BookModel bookModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(BOOKS_COLUMN_TITLE, bookModel.getTitle());
@@ -132,7 +132,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return bookModel;
     }
 
-    private List<BookModel> getAllBooks() {
+    public List<BookModel> getAllBooks() {
         List<BookModel> bookList = new ArrayList<BookModel>();
         String sqlQuery = "SELECT * FROM " + BOOKS_TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
